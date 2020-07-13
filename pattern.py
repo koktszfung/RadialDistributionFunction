@@ -4,18 +4,19 @@ from itertools import product
 
 
 class Pattern:
+    group_numbers = {"p1": 1, "p2": 2, "pm": 3, "pg": 4, "cm": 5, "pmm": 6, "pmg": 7, "pgg": 8, "cmm": 9,
+                     "p4": 10, "p4m": 11, "p4g": 12, "p3": 13, "p3m1": 14, "p31m": 15, "p6": 16, "p6m": 17}
     group_names = ["p1", "p2", "pm", "pg", "cm", "pmm", "pmg", "pgg", "cmm",
                    "p4", "p4m", "p4g", "p3", "p3m1", "p31m", "p6", "p6m"]
 
-    def __init__(self, n=0):
-        self.n = n
-        self.N = 100
+    def __init__(self, n, N=100, d=0.1):
+        self.n = max(1, n)
+        self.N = N
+        self.d = d
         self.a1 = None
         self.a2 = None
         self.xys = None
-        self.d = 1e-1
-        if n != 0:
-            self.reset()
+        self.reset()
 
     def random(self, shape=None):
         return np.random.random(shape)*(1 - self.d*2) + self.d
